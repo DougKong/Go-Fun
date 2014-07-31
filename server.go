@@ -7,5 +7,9 @@ func main() {
   m.Get("/:name", func(params martini.Params) string {
     return "Hello" + params["name"]
   })
+
+  m.Post("/new", func () string {
+		return "hey"
+  })
   m.Run()
 }
