@@ -9,7 +9,7 @@ func main() {
   })
 
   m.Post("/new", func () string {
-		return "hey"
+    return "hey"
   })
   m.Run()
 }
