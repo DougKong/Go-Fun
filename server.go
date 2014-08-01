@@ -1,15 +1,18 @@
 package main
 
-import "github.com/go-martini/martini"
+import (
+  "fmt"
+  "github.com/codegangsta/negroni"
+  "net/http"
+)
 
 func main() {
-  m := martini.Classic()
-  m.Get("/:name", func(params martini.Params) string {
-    return "Hello" + params["name"]
+  mux := http.NewServeMux()
+  mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+    fmt.Fprintf(w, "Welcome to the homepage!")
   })
 
-  m.Post("/new", func () string {
-    return "hey"
-  })
-  m.Run()
+  n := negroni.Classic()
+  n.UseHandler(mux)
+  n.Run(":3000")
 }
